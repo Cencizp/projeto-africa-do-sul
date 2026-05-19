@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ÁFRICA DO SUL</title>
+<style>
+    body{
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 20px;
+        background: linear-gradient(
+        135deg,
+        rgba(0,120,71,0.8),
+        rgba(255,255,255,0.6),
+        rgba(222,56,49,0.8),
+        rgba(0,35,149,0.8),
+        rgba(0,0,0,0.9)
+        );
+        background-attachment: fixed;
+        color: #fff;
+    }
+
+    .container{
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 40px;
+        max-width: 1400px;
+        margin: auto;
+    }
+
+    .conteudo{
+        width: 55%;
+        margin-left: 40px;
+        text-align: center;
+    }
+
+    .info-selecao{
+        width: 35%;
+        background: rgba(0,0,0,0.65);
+        padding: 20px;
+        border-radius: 15px;
+        text-align: justify;
+        box-shadow: 0 0 15px rgba(0,0,0,0.5);
+        border: 2px solid #ffb612;
+        position: sticky;
+        top: 200px;
+    }
+
+    .info-selecao h2{
+        color: #ffb612;
+        text-align: center;
+        margin-bottom: 15px;
+        text-shadow: 0 0 10px rgba(255,182,18,0.8);
+    }
+
+    .info-selecao p{
+        line-height: 1.6;
+        font-size: 15px;
+    }
+
+    .card{
+        background: rgba(0,0,0,0.6);
+        padding: 20px;
+        margin: 20px auto;
+        border-radius: 12px;
+        width: 320px;
+        box-shadow: 0 0 15px rgba(0,0,0,0.5);
+        backdrop-filter: blur(5px);
+    }
+
+    h1{
+        font-size: 32px;
+        margin-bottom: 10px;
+        letter-spacing: 2px;
+        color: #ffb612;
+        text-transform: uppercase;
+        text-shadow: 2px 2px 0 #000, 0 0 10px rgba(255, 182, 18, 0.8), rgba(255, 182, 18, 0.6)
+    }
+
+    h1:after{
+        content: "";
+        display: block;
+        width: 60%;
+        height: 3px;
+        margin: 10px auto 0;
+        background: linear-gradient(to right, #007847, #ffb612, #de3831);
+        border-radius: 5px;
+    }
+
+    h4{
+        margin-bottom: 10px;
+        color: #ffb612;
+    }
+
+    input[type="text"], input[type="number"]{
+        padding: 10px;
+        margin: 5px 0;
+        width: 90%;
+        border-radius: 6px;
+        border: none;
+        outline: none;
+        text-align: center;
+        box-shadow: inset 0 0 5px rgba(0,0,0,0.3);
+    }
+
+    button{
+        padding: 10px;
+        margin: 8px 0;
+        width: 95%;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: bold;
+        color: white;
+        background-color: #007847;
+        border: 2px solid #ffb612;
+        transition: 0.3s;
+    }
+
+    button:hover{
+        transform: scale(1.05);
+        box-shadow: 0 0 10px #ffb612;
+        background-color: #005f36;
+    }
+
+    .remover{
+        background-color: #de3831;
+        border: none;
+        padding: 4px 8px;
+        border-radius: 5px;
+        margin-left: 10px;
+        cursor: pointer;
+        width: auto;
+    }
+
+    ul{
+        list-style: none;
+        padding: 0;
+    }
+
+    li{
+        background: rgba(255,255,255,0.1);
+        margin: 5px 0;
+        padding: 8px;
+        border-radius: 5px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .verde{
+        color: #00ff88;
+    }
+
+    .vermelho{
+        color: #ff4d4d;
+    }
+
+    #resultadoCapitao{
+        background: #ffb612;
+        color: black;
+        padding: 10px;
+        margin-top: 10px;
+        font-weight: bold;
+        border-radius: 8px;
+    }
+
+    .img-topo{
+        position: fixed;
+        top: 10px;
+        left: 10px;
+        width: 300px;
+        border-radius: 50%;
+        box-shadow: 0 0 10px black;
+    }
+
+    .img-base{
+        position: fixed;
+        bottom: 10px;
+        right: 10px;
+        width: 350px;
+        opacity: 0.8;
+    }
+
+    .area-secreta-btn{
+        position: fixed;
+        top: 10px;
+        right: 10px;
+        width: auto;
+        padding: 6px 10px;
+        font-size: 12px;
+        border-radius: 6px;
+    }
+</style>
+</head>
+
+<body>
+    <img src="bandeiraselecao.png" class="img-topo">
+    <img src="mapaafrica.png" class="img-base">
+
+    <button class="area-secreta-btn" onclick="areaSecreta()">Área Secreta</button>
+
+    <div class="container">
+        <div class="conteudo">
+            <div class="card">
+                <h1>ÁFRICA DO SUL</h1>
+            </div>
+
+            <div class="card">
+                <h4>Assinatura do Treinador</h4>
+                <input type="text" id="nomeTreinador" placeholder="Digite seu nome...">
+                <button onclick="assumirCargo()">Assumir Cargo</button>
+                <div id="resultadoTreinador"></div>
+            </div>
+
+            <div class="card">
+                <h4>Convocação do seu Time</h4>
+                <input type="text" id="nomeJogador" placeholder="Digite o nome do jogador...">
+                <button onclick="convocarJogador()">Convocar</button>
+
+                <p id="qntJogadores">Vagas: </p>
+
+                <ul id="lista">
+                    
+                </ul>
+            </div>
+
+            <div class="card">
+                <h4>Abraçadeira de Capitão</h4>
+                <button onclick="sortearCapitao()">Sortear Capitão</button>
+                <div id="resultadoCapitao"></div>
+            </div>
+
+            <div class="card">
+                <h4>Simulador de Fase de Grupos</h4>
+                <input type="number" id="vitorias" placeholder="Digite as Vítórias...">
+                <input type="number" id="empates" placeholder="Digite os Empates...">
+                <input type="number" id="derrotas" placeholder="Digite as Derrotas...">
+                <button onclick="calcularClassificacao()">Calcular Classificação</button>
+                <div id="resultadoClassificacao"></div>
+            </div>
+
+            <div class="card">
+                <button onclick="relatorioDesempenho()">Relatório de Desempenho</button>
+            </div>
+        </div>
+
+        <div class="info-selecao">
+            <h2>Bafana Bafana</h2>
+
+            <p>
+                A Seleção Sul-Africana de Futebol, conhecida pelo apelido de Bafana Bafana, representa a África do Sul nas competições internacionais.
+            </p>
+
+            <p>
+                A equipe conquistou seu maior título em 1996, quando venceu a Copa Africana de Nações logo após o fim do apartheid, tornando-se símbolo de união nacional.
+            </p>
+
+            <p>
+                Em 2010, a África do Sul entrou para a história ao sediar a primeira Copa do Mundo realizada no continente africano.
+            </p>
+
+            <p>
+                A seleção é reconhecida pela velocidade, força física, torcida apaixonada e pela atmosfera marcante das vuvuzelas.
+            </p>
+        </div>
+    </div>
+
+<script>
+    let elenco = [];
+
+    function assumirCargo(){
+        let nomeTreinador = document.getElementById("nomeTreinador").value;
+
+        if(nomeTreinador){
+            document.getElementById("resultadoTreinador").innerHTML = "Bem-vindo, " + nomeTreinador + "! Você é o novo treinador da África do Sul.";
+        }    
+        else{
+            alert("Por favor, digite seu nome para assumir o cargo.");
+        }
+    }
+
+    function convocarJogador(){
+        let jaExiste = false;
+        let nomeJogador = document.getElementById("nomeJogador").value;
+
+        if(nomeJogador === ""){
+            alert("Por favor, digite o nome do jogador para convocar.");
+            return;
+        }
+
+        if(elenco.length >= 26){
+            alert("Elenco lotado! A seleção já tem 26 jogadores.");
+            return;
+        }
+
+        for(let i = 0; i < elenco.length; i++){
+            if(elenco[i] === nomeJogador){
+                jaExiste = true;
+                break;
+            }
+        }
+
+        if(jaExiste){
+            alert("Jogador já convocado!");
+            return;
+        }
+
+        elenco.push(nomeJogador);
+        atualizarLista();
+        document.getElementById("nomeJogador").value = "";
+        document.getElementById("nomeJogador").focus();
+    }
+
+    function atualizarLista(){
+        let htmlAcumulado = "";
+
+        for(let i = 0; i < elenco.length; i++){
+            let numeroJogador = i + 1;
+            htmlAcumulado += "<li>" + numeroJogador + " - " + elenco[i] + " <button class='remover' onclick='cortarJogador(" + i + ")'>X</button></li>";
+        }
+
+        document.getElementById("lista").innerHTML = htmlAcumulado;
+        document.getElementById("qntJogadores").innerHTML = "Vagas: " + elenco.length + "/26";
+    }
+
+    function cortarJogador(indice){
+        elenco.splice(indice, 1);
+        atualizarLista();
+    }
+
+    function sortearCapitao(){
+        if(elenco.length === 0){
+            alert("Nenhum jogador convocado!");
+            return;
+        }
+
+        let indiceCapitao = Math.floor(Math.random() * elenco.length);
+        let capitao = elenco[indiceCapitao];
+
+        document.getElementById("resultadoCapitao").innerHTML = "O Capitão sorteado é: " + capitao;
+    }
+
+    function calcularClassificacao(){
+        let vitorias = Number(document.getElementById("vitorias").value);
+        let empates = Number(document.getElementById("empates").value);
+        let derrotas = Number(document.getElementById("derrotas").value);
+
+        let pontos = (vitorias * 3) + empates;
+
+        if(pontos >= 6){
+            document.getElementById("resultadoClassificacao").innerHTML = "<span class='verde'>Classificado! Pontos: " + pontos + "</span>";
+        }
+        else{
+            document.getElementById("resultadoClassificacao").innerHTML = "<span class='vermelho'>Eliminado! Pontos: " + pontos + "</span>";
+        }
+    }
+
+    function areaSecreta(){
+        while(true){
+            let senha = prompt("Digite a senha:");
+
+            if(senha === "hexa2026" || senha === null){
+                alert("Acesso Liberado! Táticas Desbloqueadas");
+                return;
+            }
+        }
+    }
+
+    function relatorioDesempenho(){
+        let totalGols = 0;
+
+        for(let i = 1; i <= 3; i++){
+            totalGols += Number(prompt("Gols no jogo " + i + "?"));
+        }
+
+        let mediaGols = totalGols / 3;
+        alert("Total: " + totalGols + " | Média de Gols por Jogo: " + mediaGols);
+    }
+</script>
+</body>
+</html>
